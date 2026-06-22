@@ -1,0 +1,26 @@
+1 - Artificial Intelligence: A Modern Approach (pago, português, livro)
+Link: https://www.amazon.com.br/Intelig%C3%AAncia-Artificial-Uma-Abordagem-Moderna/dp/8595158878
+
+2 - Inteligência Artificial e ChatGPT (pago, português, livro)
+Link: https://www.casadocodigo.com.br/products/livro-inteligencia-artificial-chatgpt
+
+3 - Towards Data Science (gratuito, inglês, repositório de artigos)
+Link: https://towardsdatascience.com/
+
+4 - Documentação do Matplotlib (gratuito, inglês, documentação)
+Link: https://matplotlib.org/
+
+5 - Documentação do NumPy (gratuito, inglês, documentação)
+Link: https://numpy.org/
+
+6 - Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (pago, inglês, livro)
+Link: https://books.google.com.br/books?id=HHetDwAAQBAJ&printsec=frontcover#v=onepage&q&f=false
+
+7 - Scikit-Learn Documentation (gratuito, inglês, documentação)
+Link: https://scikit-learn.org/stable/
+
+8 - Deep Learning Book (gratuito, inglês, livro)
+Link: https://www.deeplearningbook.org/
+
+9 - Machine Learning Mastery (gratuito, inglês, repositório de artigos)
+Link: https://machinelearningmastery.com/
