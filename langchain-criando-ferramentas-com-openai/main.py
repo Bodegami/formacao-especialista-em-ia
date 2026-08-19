@@ -15,7 +15,12 @@ class Destino(BaseModel):
     cidade: str = Field("A cidade recomendada para visitar")
     motivo: str = Field("O motivo pelo qual é interessante visitar essa cidade")
 
-parseador = JsonOutputParser(pydantic_object=Destino)    
+class Restaurantes(BaseModel):
+    cidade: str = Field("A cidade recomendada para visitar")
+    restaurantes: str = Field("Restaurantes recomendados na cidade")
+
+parseador_destino = JsonOutputParser(pydantic_object=Destino)    
+parseador_restaurantes = JsonOutputParser(pydantic_object=Restaurantes)
 
 prompt_cidade = PromptTemplate(
     template="""
@@ -23,7 +28,7 @@ prompt_cidade = PromptTemplate(
     {formato_de_saida}
     """,
     input_variables=["interesse"],
-    partial_variables={"formato_de_saida": parseador.get_format_instructions()}
+    partial_variables={"formato_de_saida": parseador_destino.get_format_instructions()}
 )
 
 modelo = ChatOpenAI(
@@ -32,7 +37,23 @@ modelo = ChatOpenAI(
     temperature=0.5
 )
 
-cadeia = prompt_cidade | modelo | StrOutputParser()
+prompt_restaurantes = PromptTemplate(
+    template="""
+    Sugira restaurantes na cidade {cidade}.
+    {formato_de_saida}
+    """,
+    partial_variables={"formato_de_saida": parseador_restaurantes.get_format_instructions()}
+)
 
-resposta = cadeia.invoke({"interesse": "praia"})
+prompt_cultura = PromptTemplate(
+    template="Sugira atividades culturais na cidade {cidade}.",
+)
+
+cadeia_destino = prompt_cidade | modelo | parseador_destino
+cadeia_restaurantes = prompt_restaurantes | modelo | parseador_restaurantes
+cadeia_cultura = prompt_cultura | modelo | StrOutputParser()
+
+cadeia = (cadeia_destino | cadeia_restaurantes | cadeia_cultura)
+
+resposta = cadeia.invoke({"interesse": "praias"})
 print(resposta)
