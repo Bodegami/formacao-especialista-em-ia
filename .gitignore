@@ -222,3 +222,6 @@ gradio_config.json
 .gradio/
 
 .DS_Store
+
+# google adk
+.adk/
