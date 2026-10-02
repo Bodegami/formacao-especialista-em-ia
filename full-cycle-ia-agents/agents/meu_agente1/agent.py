@@ -2,6 +2,6 @@ from google.adk import Agent
 
 ## In terminal, run the command: adk run folder agent name. Ex: adk run meu_agente
 root_agent = Agent(
-    name="meu_agente",
+    name="meu_agente1",
     description="Um agente de exemplo para demonstração.")
 
