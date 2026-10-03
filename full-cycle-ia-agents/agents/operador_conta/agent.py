@@ -22,7 +22,14 @@ FATURAS = [
 ]
 
 def listar_faturas(cliente_id: str):
-    return [fatura for fatura in FATURAS if fatura["cliente_id"] == cliente_id]
+    """
+        Lista as faturas de um cliente específico.
+        Args:
+            cliente_id (str): O ID do cliente para o qual as faturas devem ser listadas.
+        Returns:
+            dict: Um dicinário contendo a lista de faturas do cliente.
+    """
+    return {"faturas": [fatura for fatura in FATURAS if fatura["cliente_id"] == cliente_id]}
 
 ## In terminal, run the command: adk run folder agent name. Ex: adk run meu_agente
 root_agent = Agent(
