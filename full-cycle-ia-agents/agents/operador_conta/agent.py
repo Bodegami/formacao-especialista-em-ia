@@ -1,5 +1,6 @@
 from google.adk import Agent
-from google.adk.models.lite_llm import LiteLlm
+from google.adk.tools.function_tool import FunctionTool
+from google.adk.tools.tool_context import ToolContext
 
 
 FATURAS = [
@@ -21,7 +22,41 @@ FATURAS = [
     }
 ]
 
-def listar_faturas(cliente_id: str):
+ASSINATURAS: dict[str, dict] = {
+    "cliente_123": {"plano": "Pro", "status": "ativa", "renovacao": "2026-07-01"},
+}
+
+def cancelar_assinatura(cliente_id: str, senha: str, tool_context: ToolContext) -> dict:
+    """"
+        Cancela a assinatura de um cliente específico.
+        Args:
+            cliente_id (str): O ID do cliente para o qual a assinatura deve ser cancelada.
+        Returns:
+            dict: Um dicionário contendo o status da operação de cancelamento.
+    """
+
+    if tool_context.tool_confirmation is None:
+        tool_context.request_confirmation(
+            hint="O valor da assinatura é alto. Tem certeza que deseja cancelar?",
+            payload={
+                "cliente_id": cliente_id,
+                "senha": ""
+            }
+        )
+        return {"status": "aguardando_confirmacao"}
+
+    if not tool_context.tool_confirmation.confirmed:
+        return {"status": "nao_cancelada", "mensagem": "Cancelando não confirmado pelo usuário."}
+
+    if senha != "senha_secreta":
+        return {"status": "nao_cancelada", "mensagem": "Senha incorreta. Cancelamento não autorizado."}
+
+    assinatura = ASSINATURAS.get(cliente_id)
+    if assinatura is not None:
+        assinatura["status"] = "cancelada"
+    return {"status": "cancelada", "cliente_id": cliente_id}
+
+def listar_faturas(cliente_id: str) -> dict:
     """
         Lista as faturas de um cliente específico.
         Args:
@@ -31,7 +66,11 @@ def listar_faturas(cliente_id: str):
     """
     return {"faturas": [fatura for fatura in FATURAS if fatura["cliente_id"] == cliente_id]}
 
+# def verificar_valor_assinatura(cliente_id: str, valor: float) -> dict:
+#     return valor < 100
+
 ## In terminal, run the command: adk run folder agent name. Ex: adk run meu_agente
+## Also, you can execute a command to use vie web interface. Ex: adk web agents
 root_agent = Agent(
     name="operador_conta",
     instruction=""""
@@ -44,7 +83,12 @@ root_agent = Agent(
     Seja cordial e direto.
     """,
     model="gemini-3.5-flash-lite",
-    tools=[listar_faturas]
+    tools=[
+        listar_faturas, 
+        cancelar_assinatura
+        # FunctionTool(cancelar_assinatura, require_confirmation=True)
+        # FunctionTool(cancelar_assinatura, require_confirmation=verificar_valor_assinatura) # can be a boolean True or False/ but also a boolean function
+    ]
 )
 
 
