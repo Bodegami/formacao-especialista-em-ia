@@ -1,0 +1,30 @@
+[project]
+name = "agente-bancario"
+version = "0.1.0"
+description = "Agente bancário restrito com LangChain + Gemini: consultar saldo, depositar e transferir."
+readme = "README.md"
+authors = [
+    { name = "Renato Ferreira", email = "rena.f.oliveira@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=1.5.0",
+    "langchain-google-genai>=4.5.0",
+    "python-dotenv>=1.2.4",
+    "streamlit>=1.67.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.6,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_functions = ["given_*", "test_*"]
+markers = ["e2e: testes ponta a ponta contra o modelo Gemini real (lentos, usam a API)"]
+addopts = "-m 'not e2e'"
