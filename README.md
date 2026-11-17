@@ -132,7 +132,12 @@ even a jailbroken model cannot break the rules.
 
 ### 🎬 Demo video
 
-▶️ Video: _coming soon_ <!-- Replace "_coming soon_" with the link, e.g. [Watch the demo](https://...) -->
+▶️ Video: 
+
+https://github.com/user-attachments/assets/21991fd4-2cad-4a67-a1ff-1c3dccd9c9e8
+
+
+ <!-- Replace "_coming soon_" with the link, e.g. [Watch the demo](https://...) -->
 
 ---
 
