@@ -1,0 +1,77 @@
+/* Layout "neobank violeta" para o Agente Bancário (injetado pelo app.py). */
+:root {
+  --violet: #5B3FD6;
+  --violet-soft: #ECE7FF;
+  --violet-ink: #3D2A9E;
+  --ink: #1E1B2E;
+  --muted: #5E5873;
+  --line: #E2DEF0;
+  --ok-bg: #E3F6EC;
+  --ok-ink: #14653F;
+  --warn-bg: #FFF4E5;
+  --warn-ink: #7A4A06;
+  --err-bg: #FDEEEE;
+  --err-ink: #7A1F1F;
+}
+
+/* ---------- barra lateral ---------- */
+[data-testid="stSidebar"] { background: var(--violet); }
+[data-testid="stSidebar"] * { color: #fff; }
+.brand { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; font-weight: 600; }
+.brand-mark { width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,.16);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.balance-card { background: rgba(255,255,255,.12); border-radius: 16px; padding: 16px; margin-top: 4px; }
+.balance-label { font-size: .78rem; color: #E4DEFF !important; }
+.balance-value { font-size: 1.75rem; font-weight: 600; letter-spacing: -.5px; margin-top: 2px; }
+.balance-sub { font-size: .72rem; color: #CFC6FF !important; margin-top: 6px; }
+.side-title { font-size: .78rem; color: #E4DEFF !important; margin: 18px 0 8px; }
+.tx-row { display: flex; justify-content: space-between; font-size: .85rem; padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1); }
+.tx-icon { display: inline-block; width: 18px; color: #CFC6FF !important; }
+.tx-empty { font-size: .8rem; color: #CFC6FF !important; }
+.shield { font-size: .72rem; color: #CFC6FF !important; margin-top: 18px; }
+.st-key-side_actions button { background: rgba(255,255,255,.12); border: none; border-radius: 999px; }
+.st-key-side_actions button:hover { background: rgba(255,255,255,.22); border: none; }
+.st-key-side_actions button p { color: #fff !important; }
+
+/* ---------- área principal ---------- */
+.block-container { max-width: 860px; padding-top: 2.2rem; }
+.page-title { font-size: 1.35rem; font-weight: 600; color: var(--ink); margin: 0; }
+.page-sub { font-size: .88rem; color: var(--muted); margin: 2px 0 6px; }
+.st-key-quick button { background: var(--violet-soft); color: var(--violet-ink); border: none;
+  border-radius: 999px; padding: 4px 16px; }
+.st-key-quick button:hover { background: #DCD3FF; color: var(--violet-ink); border: none; }
+.st-key-quick button p { color: var(--violet-ink); font-weight: 500; }
+
+/* ---------- mensagens ---------- */
+.msg-user { display: flex; justify-content: flex-end; margin: 10px 0; }
+.msg-user .bubble { background: var(--violet); color: #fff; border-radius: 16px 16px 4px 16px;
+  padding: 10px 14px; max-width: 72%; line-height: 1.45; }
+.msg-bot { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--violet-soft); color: var(--violet);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: .95rem; }
+.bot-col { display: flex; flex-direction: column; gap: 8px; max-width: 78%; }
+.msg-bot .bubble { background: #fff; border: 1px solid var(--line); color: var(--ink);
+  border-radius: 4px 16px 16px 16px; padding: 10px 14px; line-height: 1.5; }
+.msg-bot .bubble.refusal { background: var(--warn-bg); border-color: #F5DDB8; color: var(--warn-ink); }
+.msg-bot .bubble.error { background: var(--err-bg); border-color: #F4CACA; color: var(--err-ink); }
+.tools { font-size: .72rem; color: var(--muted); padding-left: 2px; }
+
+/* ---------- recibo ---------- */
+.receipt { background: #fff; border: 1px solid var(--line); border-radius: 4px 16px 16px 16px;
+  padding: 14px 16px; width: 300px; max-width: 100%; }
+.rc-head { display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--ink); }
+.chip-ok { background: var(--ok-bg); color: var(--ok-ink); font-size: .7rem; font-weight: 500;
+  padding: 2px 9px; border-radius: 999px; }
+.rc-amount { font-size: 1.6rem; font-weight: 600; color: var(--ink); margin: 6px 0 8px; }
+.rc-grid { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: .82rem; }
+.rc-k { color: var(--muted); }
+.rc-v { text-align: right; color: var(--ink); }
+
+/* ---------- campo de mensagem ---------- */
+[data-testid="stChatInput"] { border-radius: 999px; border: none; background: transparent; }
+[data-testid="stChatInput"] > div { background: #fff; border: 1px solid var(--line); border-radius: 999px; }
+[data-testid="stChatInput"] > div:focus-within { border-color: var(--violet); }
+[data-testid="stChatInput"] textarea { padding-left: 10px; }
+[data-testid="stChatInputSubmitButton"] { background: var(--violet); border-radius: 50%; }
+[data-testid="stChatInputSubmitButton"] svg { color: #fff; fill: #fff; }
